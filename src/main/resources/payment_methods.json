@@ -1,0 +1,98 @@
+[
+  {
+    "name": "CASH",
+    "finalPriceRange": {
+      "minModifier": 0.9,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.05
+  },
+  {
+    "name": "CASH_ON_DELIVERY",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1.02
+    },
+    "pointsModifier": 0.05
+  },
+  {
+    "name": "VISA",
+    "finalPriceRange": {
+      "minModifier": 0.95,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.03
+  },
+  {
+    "name": "MASTERCARD",
+    "finalPriceRange": {
+      "minModifier": 0.95,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.03
+  },
+  {
+    "name": "AMEX",
+    "finalPriceRange": {
+      "minModifier": 0.98,
+      "maxModifier": 1.01
+    },
+    "pointsModifier": 0.02
+  },
+  {
+    "name": "JCB",
+    "finalPriceRange": {
+      "minModifier": 0.95,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.05
+  },
+  {
+    "name": "LINE_PAY",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.01
+  },
+  {
+    "name": "PAYPAY",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.01
+  },
+  {
+    "name": "POINTS",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0
+  },
+  {
+    "name": "GRAB_PAY",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0.01
+  },
+  {
+    "name": "BANK_TRANSFER",
+    "finalPriceRange": {
+      "minModifier": 1,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0
+  },
+  {
+    "name": "CHEQUE",
+    "finalPriceRange": {
+      "minModifier": 0.9,
+      "maxModifier": 1
+    },
+    "pointsModifier": 0
+  }
+]
