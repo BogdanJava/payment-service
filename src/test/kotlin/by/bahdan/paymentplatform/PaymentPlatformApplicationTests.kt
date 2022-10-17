@@ -3,8 +3,8 @@ package by.bahdan.paymentplatform
 import by.bahdan.paymentplatform.exception.ExceptionResponseBody
 import by.bahdan.paymentplatform.model.GetSalesRequestDTO
 import by.bahdan.paymentplatform.model.PaymentResponse
-import by.bahdan.paymentplatform.model.SalesPerHour
-import by.bahdan.paymentplatform.model.SalesPerHourResponse
+import by.bahdan.paymentplatform.model.HourlySalesDataEntry
+import by.bahdan.paymentplatform.model.HourlySalesData
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
@@ -79,7 +79,7 @@ class PaymentPlatformApplicationTests {
 
         val requestBody = mapper.writeValueAsString(GetSalesRequestDTO("2022-09-01T00:00:00Z", "2022-09-01T05:13:00Z"))
         val request = HttpEntity(requestBody, HttpHeaders().also { it.set("Content-Type", "application/json") })
-        val response = restTemplate.exchange("$baseUrl/sales", HttpMethod.POST, request, SalesPerHourResponse::class.java)
+        val response = restTemplate.exchange("$baseUrl/sales", HttpMethod.POST, request, HourlySalesData::class.java)
 
         assertThat(response.statusCode, IsEqual(HttpStatus.OK))
         assertThat(response.body!!.sales.size, IsEqual(4))
@@ -98,7 +98,7 @@ class PaymentPlatformApplicationTests {
 
         val requestBody = mapper.writeValueAsString(GetSalesRequestDTO("2022-09-02T00:00:00Z", "2022-09-04T05:13:00Z"))
         val request = HttpEntity(requestBody, HttpHeaders().also { it.set("Content-Type", "application/json") })
-        val response = restTemplate.exchange("$baseUrl/sales", HttpMethod.POST, request, SalesPerHourResponse::class.java)
+        val response = restTemplate.exchange("$baseUrl/sales", HttpMethod.POST, request, HourlySalesData::class.java)
 
         assertThat(response.statusCode, IsEqual(HttpStatus.OK))
         assertThat(response.body!!.sales.size, IsEqual(0))
@@ -157,12 +157,12 @@ class PaymentPlatformApplicationTests {
 
     companion object {
 
-        val expectedSalesData = SalesPerHourResponse(
+        val expectedSalesData = HourlySalesData(
             sales = listOf(
-                SalesPerHour(datetime="2022-09-01T00:00:00Z", sales="97.00", points=5),
-                SalesPerHour(datetime="2022-09-01T01:00:00Z", sales="4631.40", points=43),
-                SalesPerHour(datetime="2022-09-01T04:00:00Z", sales="5007.80", points=256),
-                SalesPerHour(datetime="2022-09-01T05:00:00Z", sales="2140.00", points=21)
+                HourlySalesDataEntry(datetime="2022-09-01T00:00:00Z", sales="97.00", points=5),
+                HourlySalesDataEntry(datetime="2022-09-01T01:00:00Z", sales="4631.40", points=43),
+                HourlySalesDataEntry(datetime="2022-09-01T04:00:00Z", sales="5007.80", points=256),
+                HourlySalesDataEntry(datetime="2022-09-01T05:00:00Z", sales="2140.00", points=21)
             )
         )
         @JvmStatic

@@ -1,11 +1,11 @@
 package by.bahdan.paymentplatform.model
 
 
-data class SalesPerHourResponse(
-    val sales: List<SalesPerHour>
+data class HourlySalesData(
+    val sales: List<HourlySalesDataEntry>
 )
 
-data class SalesPerHour(
+data class HourlySalesDataEntry(
     val datetime: String,
     val sales: String,
     val points: Int

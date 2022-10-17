@@ -9,7 +9,6 @@ import by.bahdan.paymentplatform.repository.PaymentRequestRepository
 import by.bahdan.paymentplatform.utils.parseISODate
 import by.bahdan.paymentplatform.utils.toISODateString
 import com.fasterxml.jackson.databind.ObjectMapper
-import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -27,7 +26,7 @@ class PaymentService(
         var points: Int
     )
 
-    fun getHourlySalesData(salesRequestDTO: GetSalesRequestDTO): SalesPerHourResponse {
+    fun getHourlySalesData(salesRequestDTO: GetSalesRequestDTO): HourlySalesData {
         val salesRequest = salesRequestDTO.validateAndParse()
 
         val payments = repo.getPaymentsWithinRange(salesRequest.startDateTime, salesRequest.endDateTime)
@@ -50,18 +49,27 @@ class PaymentService(
                         acc
                     }
             }.map {
-                SalesPerHour(
+                HourlySalesDataEntry(
                     datetime = it.first.toISODateString(),
                     sales = BigDecimal.valueOf(it.second.sales).setScale(2, RoundingMode.HALF_UP).toString(),
                     points = it.second.points
                 )
             }
 
-        return SalesPerHourResponse(salesInfo)
+        return HourlySalesData(salesInfo)
     }
 
-    fun makePayment(dto: PaymentRequestDTO): PaymentResponse {
+    fun makePayment(dto: GraphqlPaymentRequestDTO): PaymentResponse {
         val paymentRequest = validateAndParseDTO(dto)
+        return savePayment(paymentRequest)
+    }
+
+    fun makePayment(dto: RestPaymentRequestDTO): PaymentResponse {
+        val paymentRequest = validateAndParseDTO(dto)
+        return savePayment(paymentRequest)
+    }
+
+    private fun savePayment(paymentRequest: PaymentRequest): PaymentResponse {
         paymentRequest.id = UUID.randomUUID().toString()
         val paymentRequestResult = repo.save(paymentRequest)
         return PaymentResponse(
@@ -70,7 +78,7 @@ class PaymentService(
         )
     }
 
-    private fun validateAndParseDTO(dto: PaymentRequestDTO): PaymentRequest {
+    private fun <T : Any?> validateAndParseDTO(dto: PaymentRequestDTO<T>): PaymentRequest {
         return try {
             val paymentMethod = paymentMethods.find { it.name == dto.paymentMethod }
                 ?: throw InvalidPaymentMethodException(dto.paymentMethod)

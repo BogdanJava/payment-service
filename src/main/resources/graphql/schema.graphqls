@@ -1,0 +1,52 @@
+type Mutation {
+    makePayment(payment: Payment!) : MakePaymentResponse!
+}
+
+type Query {
+    hourlySalesData(salesInfoRequest: SalesInfoRequest!) : SalesDataResponse!
+}
+
+union SalesDataResponse = HourlySalesData | ErrorResponse
+union MakePaymentResponse = PaymentResponse | ErrorResponse
+
+type HourlySalesData {
+    sales: [HourlySalesDataEntry!]!
+}
+
+type HourlySalesDataEntry {
+    datetime: String!
+    sales: String!
+    points: Int!
+}
+
+type PaymentResponse {
+    finalPrice: String!
+    points: Int!
+}
+
+type ErrorResponse {
+    description: String!
+    errorMessage: String!
+}
+
+input SalesInfoRequest {
+    startDateTime: String!
+    endDateTime: String!
+}
+
+input Payment {
+    customerId: String!
+    price: String!
+    priceModifier: Float!
+    paymentMethod: String!
+    datetime: String!
+    additionalItem: AdditionalItem
+}
+
+input AdditionalItem {
+    digits: String
+    checkNumber: String
+    bankName: String
+    serviceName: String
+    accountNumber: String
+}

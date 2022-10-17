@@ -1,7 +1,6 @@
 package by.bahdan.paymentplatform.model
 
-import by.bahdan.paymentplatform.utils.toISODateString
-import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -10,22 +9,48 @@ import java.math.RoundingMode
 import java.util.*
 import kotlin.math.roundToInt
 
-data class PaymentRequestDTO(
-    @JsonProperty("customer_id")
-    val customerId: String,
+abstract class PaymentRequestDTO<T : Any?> {
+    abstract val customerId: String
+    abstract val price: String
+    abstract val priceModifier: Double
+    abstract val paymentMethod: String
+    abstract val datetime: String
+    abstract val additionalItem: T
+}
 
-    val price: String,
+data class RestPaymentRequestDTO(
+    @JsonProperty("customer_id")
+    override val customerId: String,
+
+    override val price: String,
 
     @JsonProperty("price_modifier")
-    val priceModifier: Double,
+    override val priceModifier: Double,
 
     @JsonProperty("payment_method")
-    val paymentMethod: String,
+    override val paymentMethod: String,
 
-    val datetime: String,
+    override val datetime: String,
 
     @JsonProperty("additional_item")
-    val additionalItem: Map<String, Any>?
+    override val additionalItem: Any?
+) : PaymentRequestDTO<Any?>()
+
+data class GraphqlPaymentRequestDTO(
+    override val customerId: String,
+    override val price: String,
+    override val priceModifier: Double,
+    override val paymentMethod: String,
+    override val datetime: String,
+    override val additionalItem: GraphqlAdditionalItemDTO?
+) : PaymentRequestDTO<GraphqlAdditionalItemDTO?>()
+
+data class GraphqlAdditionalItemDTO(
+    @JsonProperty("last_4") val digits: String?,
+    @JsonProperty("check_number") val checkNumber: String?,
+    @JsonProperty("bank_name") val bankName: String?,
+    @JsonProperty("service_name") val serviceName: String?,
+    @JsonProperty("account_number") val accountNumber: String?
 )
 
 @Document
