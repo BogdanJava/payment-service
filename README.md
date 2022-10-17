@@ -11,3 +11,8 @@ To run the app you will need:
 
 ## How to run
 Just run `./startup.sh`
+or 
+```bash
+./gradlew bootBuildImage
+docker-compose up
+```
