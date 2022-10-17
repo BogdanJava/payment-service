@@ -23,8 +23,8 @@ class AppConfig {
 
     @Bean
     fun paymentMethods(mapper: ObjectMapper): List<PaymentMethod> {
-        val file = ResourceUtils.getFile("classpath:payment_methods.json")
-        val inputStream = FileInputStream(file)
-        return mapper.readValue(inputStream, object : TypeReference<List<PaymentMethod>>() {})
+        val resource = this::class.java.classLoader
+            .getResourceAsStream("payment_methods.json")
+        return mapper.readValue(resource, object : TypeReference<List<PaymentMethod>>() {})
     }
 }

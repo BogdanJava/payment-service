@@ -159,10 +159,10 @@ class PaymentPlatformApplicationTests {
 
         val expectedSalesData = SalesPerHourResponse(
             sales = listOf(
-                SalesPerHour(datetime="2022-09-01T00:00:00Z", sales="97.0", points=5),
-                SalesPerHour(datetime="2022-09-01T01:00:00Z", sales="4631.4", points=43),
-                SalesPerHour(datetime="2022-09-01T04:00:00Z", sales="5007.8", points=256),
-                SalesPerHour(datetime="2022-09-01T05:00:00Z", sales="2140.0", points=21)
+                SalesPerHour(datetime="2022-09-01T00:00:00Z", sales="97.00", points=5),
+                SalesPerHour(datetime="2022-09-01T01:00:00Z", sales="4631.40", points=43),
+                SalesPerHour(datetime="2022-09-01T04:00:00Z", sales="5007.80", points=256),
+                SalesPerHour(datetime="2022-09-01T05:00:00Z", sales="2140.00", points=21)
             )
         )
         @JvmStatic

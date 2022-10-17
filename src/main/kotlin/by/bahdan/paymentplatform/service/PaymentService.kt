@@ -11,6 +11,8 @@ import by.bahdan.paymentplatform.utils.toISODateString
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 
 @Service
@@ -50,7 +52,7 @@ class PaymentService(
             }.map {
                 SalesPerHour(
                     datetime = it.first.toISODateString(),
-                    sales = it.second.sales.toString(),
+                    sales = BigDecimal.valueOf(it.second.sales).setScale(2, RoundingMode.HALF_UP).toString(),
                     points = it.second.points
                 )
             }
