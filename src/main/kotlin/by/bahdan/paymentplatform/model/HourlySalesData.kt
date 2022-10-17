@@ -1,6 +1,5 @@
 package by.bahdan.paymentplatform.model
 
-
 data class HourlySalesData(
     val sales: List<HourlySalesDataEntry>
 )

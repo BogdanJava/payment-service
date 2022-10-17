@@ -4,7 +4,6 @@ import by.bahdan.paymentplatform.exception.AdditionalItemValidationException
 import by.bahdan.paymentplatform.utils.containsNonDigits
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
-import java.util.stream.Collectors
 
 abstract class AdditionalItem {
     abstract fun validate()
@@ -21,7 +20,6 @@ class LastFourDigits constructor(@JsonProperty("last_4") val digits: String) : A
     }
 
     override fun name(): String = "last_four_digits"
-
 }
 
 class CourierService constructor(@JsonProperty("service_name") val serviceName: String) : AdditionalItem() {

@@ -4,7 +4,7 @@ import by.bahdan.paymentplatform.exception.InvalidDateRangeException
 import by.bahdan.paymentplatform.exception.InvalidRequestBodyParamException
 import by.bahdan.paymentplatform.utils.parseISODate
 import java.time.format.DateTimeParseException
-import java.util.*
+import java.util.Date
 
 data class GetSalesRequestDTO(
     val startDateTime: String,
@@ -18,7 +18,8 @@ data class GetSalesRequestDTO(
             },
             endDateTime = try { parseISODate(endDateTime) } catch (e: DateTimeParseException) {
                 throw InvalidRequestBodyParamException("endDateTime")
-            })
+            }
+        )
 
         if (salesRequest.endDateTime.before(salesRequest.startDateTime)) {
             throw InvalidDateRangeException()

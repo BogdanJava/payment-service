@@ -1,6 +1,10 @@
 package by.bahdan.paymentplatform.controller
 
-import by.bahdan.paymentplatform.model.*
+import by.bahdan.paymentplatform.model.GetSalesRequestDTO
+import by.bahdan.paymentplatform.model.GraphqlPaymentRequestDTO
+import by.bahdan.paymentplatform.model.HourlySalesData
+import by.bahdan.paymentplatform.model.PaymentResponse
+import by.bahdan.paymentplatform.model.RestPaymentRequestDTO
 import by.bahdan.paymentplatform.service.PaymentService
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
@@ -46,5 +50,4 @@ class GraphQLPaymentController(
     fun makePayment(@Argument payment: GraphqlPaymentRequestDTO): PaymentResponse {
         return paymentService.makePayment(payment)
     }
-
 }

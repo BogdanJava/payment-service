@@ -23,8 +23,8 @@ class InvalidRequestBodyParamException(paramName: String) : PlatformException(
 
 class PriceModifierOutOfPriceRangeException(priceModifier: Double, paymentMethod: PaymentMethod) : PlatformException(
     message = "Price modifier $priceModifier is outside the price modifier range " +
-            "{${paymentMethod.finalPriceRange.minModifier}:${paymentMethod.finalPriceRange.maxModifier}} " +
-            "of the following payment method: ${paymentMethod.name}",
+        "{${paymentMethod.finalPriceRange.minModifier}:${paymentMethod.finalPriceRange.maxModifier}} " +
+        "of the following payment method: ${paymentMethod.name}",
     responseErrorMessage = "invalid_price_modifier",
     responseCode = 400
 )

@@ -3,7 +3,7 @@ package by.bahdan.paymentplatform.repository
 import by.bahdan.paymentplatform.model.PaymentRequest
 import org.springframework.data.mongodb.repository.MongoRepository
 import org.springframework.data.mongodb.repository.Query
-import java.util.*
+import java.util.Date
 
 interface PaymentRequestRepository : MongoRepository<PaymentRequest, String> {
 

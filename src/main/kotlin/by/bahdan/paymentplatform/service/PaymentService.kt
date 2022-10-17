@@ -4,7 +4,15 @@ import by.bahdan.paymentplatform.exception.InvalidPaymentMethodException
 import by.bahdan.paymentplatform.exception.InvalidRequestBodyParamException
 import by.bahdan.paymentplatform.exception.PlatformException
 import by.bahdan.paymentplatform.exception.PriceModifierOutOfPriceRangeException
-import by.bahdan.paymentplatform.model.*
+import by.bahdan.paymentplatform.model.GetSalesRequestDTO
+import by.bahdan.paymentplatform.model.GraphqlPaymentRequestDTO
+import by.bahdan.paymentplatform.model.HourlySalesData
+import by.bahdan.paymentplatform.model.HourlySalesDataEntry
+import by.bahdan.paymentplatform.model.PaymentMethod
+import by.bahdan.paymentplatform.model.PaymentRequest
+import by.bahdan.paymentplatform.model.PaymentRequestDTO
+import by.bahdan.paymentplatform.model.PaymentResponse
+import by.bahdan.paymentplatform.model.RestPaymentRequestDTO
 import by.bahdan.paymentplatform.repository.PaymentRequestRepository
 import by.bahdan.paymentplatform.utils.parseISODate
 import by.bahdan.paymentplatform.utils.toISODateString
@@ -12,7 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.math.RoundingMode
-import java.util.*
+import java.util.Calendar
+import java.util.UUID
 
 @Service
 class PaymentService(

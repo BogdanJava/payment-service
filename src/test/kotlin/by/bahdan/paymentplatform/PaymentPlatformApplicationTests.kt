@@ -2,9 +2,9 @@ package by.bahdan.paymentplatform
 
 import by.bahdan.paymentplatform.exception.ExceptionResponseBody
 import by.bahdan.paymentplatform.model.GetSalesRequestDTO
-import by.bahdan.paymentplatform.model.PaymentResponse
-import by.bahdan.paymentplatform.model.HourlySalesDataEntry
 import by.bahdan.paymentplatform.model.HourlySalesData
+import by.bahdan.paymentplatform.model.HourlySalesDataEntry
+import by.bahdan.paymentplatform.model.PaymentResponse
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.IsEqual
@@ -159,10 +159,10 @@ class PaymentPlatformApplicationTests {
 
         val expectedSalesData = HourlySalesData(
             sales = listOf(
-                HourlySalesDataEntry(datetime="2022-09-01T00:00:00Z", sales="97.00", points=5),
-                HourlySalesDataEntry(datetime="2022-09-01T01:00:00Z", sales="4631.40", points=43),
-                HourlySalesDataEntry(datetime="2022-09-01T04:00:00Z", sales="5007.80", points=256),
-                HourlySalesDataEntry(datetime="2022-09-01T05:00:00Z", sales="2140.00", points=21)
+                HourlySalesDataEntry(datetime = "2022-09-01T00:00:00Z", sales = "97.00", points = 5),
+                HourlySalesDataEntry(datetime = "2022-09-01T01:00:00Z", sales = "4631.40", points = 43),
+                HourlySalesDataEntry(datetime = "2022-09-01T04:00:00Z", sales = "5007.80", points = 256),
+                HourlySalesDataEntry(datetime = "2022-09-01T05:00:00Z", sales = "2140.00", points = 21)
             )
         )
         @JvmStatic
@@ -191,5 +191,4 @@ class PaymentPlatformApplicationTests {
             )
         }
     }
-
 }
