@@ -1,5 +1,6 @@
 package by.bahdan.paymentplatform.exception
 
+import by.bahdan.paymentplatform.model.AdditionalItem
 import by.bahdan.paymentplatform.model.PaymentMethod
 
 open class PlatformException(
@@ -32,4 +33,10 @@ class InvalidDateRangeException : PlatformException(
     message = "Invalid date range",
     responseCode = 400,
     responseErrorMessage = "invalid_date_range"
+)
+
+class AdditionalItemValidationException(additionalItem: AdditionalItem) : PlatformException(
+    message = "Additional item validation error",
+    responseCode = 400,
+    responseErrorMessage = "invalid_additional_item_${additionalItem.name()}"
 )

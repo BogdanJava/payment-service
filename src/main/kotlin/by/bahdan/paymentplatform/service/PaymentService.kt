@@ -25,8 +25,6 @@ class PaymentService(
         var points: Int
     )
 
-    fun getAll(): List<PaymentRequest> = repo.findAll(Sort.by(Sort.Order.asc("datetime")))
-
     fun getHourlySalesData(salesRequestDTO: GetSalesRequestDTO): SalesPerHourResponse {
         val salesRequest = salesRequestDTO.validateAndParse()
 
@@ -87,7 +85,9 @@ class PaymentService(
                     throw InvalidRequestBodyParamException("datetime")
                 },
                 additionalItem = if (paymentMethod.method.additionalItemType != null) try {
-                    objectMapper.convertValue(dto.additionalItem, paymentMethod.method.additionalItemType)
+                    val additionalItem = objectMapper.convertValue(dto.additionalItem, paymentMethod.method.additionalItemType)
+                    additionalItem.validate()
+                    additionalItem
                 } catch (e: IllegalArgumentException) {
                     throw InvalidRequestBodyParamException("additional_item")
                 } else null

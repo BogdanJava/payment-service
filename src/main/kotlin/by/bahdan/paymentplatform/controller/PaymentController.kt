@@ -13,18 +13,12 @@ class PaymentController(
     val paymentService: PaymentService
 ) {
 
-    @GetMapping("/sales")
+    // Setting as "POST" due to restTemplate limitations (cannot send body when the method is "GET")
+    @PostMapping("/sales")
     fun salesInfo(@RequestBody getSalesRequestDTO: GetSalesRequestDTO): ResponseEntity<SalesPerHourResponse> {
         val salesResponse = paymentService.getHourlySalesData(getSalesRequestDTO)
 
         return ResponseEntity.ok(salesResponse)
-    }
-
-    @GetMapping("/payments")
-    fun getPayments(): ResponseEntity<List<Any>> {
-        val payments = paymentService.getAll()
-
-        return ResponseEntity.ok(payments.map { it.toResponseObject() })
     }
 
     @PostMapping("/payment")

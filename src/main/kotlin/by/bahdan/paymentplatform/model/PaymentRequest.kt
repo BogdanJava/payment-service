@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -38,18 +40,13 @@ data class PaymentRequest(
     @Id var id: String = ""
 
     val finalPrice: Double
-        get() = price * priceModifier
+        get() = BigDecimal.valueOf(price * priceModifier)
+            .setScale(2, RoundingMode.HALF_UP)
+            .toDouble()
 
     val points: Int
         get() = (price * paymentMethod.pointsModifier).roundToInt()
 
-    fun toResponseObject(): Map<String, Any> {
-        return mapOf(
-            "price" to finalPrice,
-            "points" to points,
-            "datetime" to datetime.toISODateString()
-        )
-    }
 }
 
 

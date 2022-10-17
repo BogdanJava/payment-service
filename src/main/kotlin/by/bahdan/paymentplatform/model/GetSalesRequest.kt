@@ -3,7 +3,6 @@ package by.bahdan.paymentplatform.model
 import by.bahdan.paymentplatform.exception.InvalidDateRangeException
 import by.bahdan.paymentplatform.exception.InvalidRequestBodyParamException
 import by.bahdan.paymentplatform.utils.parseISODate
-import java.text.DateFormat
 import java.time.format.DateTimeParseException
 import java.util.*
 
@@ -11,7 +10,6 @@ data class GetSalesRequestDTO(
     val startDateTime: String,
     val endDateTime: String
 ) {
-    constructor() : this("", "")
 
     fun validateAndParse(): GetSalesRequest {
         val salesRequest = GetSalesRequest(

@@ -5,7 +5,6 @@ data class PaymentMethod(
     val finalPriceRange: PriceRange,
     val pointsModifier: Double
 ) {
-    constructor() : this("", PriceRange(0.0, 0.0), 0.0)
 
     val method: PaymentMethods
         get() = PaymentMethods.valueOf(name)
@@ -15,7 +14,6 @@ data class PriceRange(
     val minModifier: Double,
     val maxModifier: Double
 ) {
-    constructor() : this(0.0, 0.0)
 
     fun within(priceModifier: Double): Boolean = priceModifier in minModifier..maxModifier
 }
