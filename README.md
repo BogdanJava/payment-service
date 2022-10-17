@@ -17,6 +17,12 @@ or
 docker-compose up
 ```
 
+## APIs
+The application has 2 types of API:
+- RESTFul
+- GraphQL
+You can find sample requests in the [postman collection](payment-service.postman_collection.json)
+
 ## Example requests
 1. Make a payment
 ```
