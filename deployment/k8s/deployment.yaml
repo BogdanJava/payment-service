@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-platform-deployment
+  labels:
+    app: payment-platform
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: payment-platform
+  template:
+    metadata:
+      labels:
+        app: payment-platform
+    spec:
+      volumes:
+        - name: db-connection-secrets
+          secret:
+            secretName: db-connection-secrets
+            optional: false
+      containers:
+        - name: app
+          image: payment-platform:1.0
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: db-connection-secrets
+              mountPath: "/etc/db-connection-secrets"
+              readOnly: true
+
