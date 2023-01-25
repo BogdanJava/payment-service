@@ -39,7 +39,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: app-jar
-          path: artifacts/
+          path: /tmp/artifacts
       - name: Copy the Jar file to the project directory
         run: ls -la artifacts && pwd
       - name: Login to Docker Hub
@@ -51,7 +51,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            JAR_FILE_PATH="{{defaultContext}}/artifacts/app.jar"
+            JAR_FILE_PATH=/tmp/artifacts/app.jar
           push: true
           tags: bogdanjava/payments-platform:latest
 
