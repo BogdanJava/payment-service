@@ -41,4 +41,11 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
+    environment("MONGO_PORT", "27017")
+    environment("MONGO_HOST", "localhost")
+    environment("MONGO_USERNAME", "admin")
+    environment("MONGO_PASSWORD", "password")
 }
+
+
