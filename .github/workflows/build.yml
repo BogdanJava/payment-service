@@ -39,8 +39,8 @@ jobs:
       - name: Archive Jar
         uses: actions/upload-artifact@v3
         with:
-          name: app.jar
-          path: build/libs/*.jar
+          name: app-jar
+          path: build/libs/app.jar
 
   build-docker:
     environment:
@@ -59,15 +59,8 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: artifacts
+          name: app-jar
           path: artifacts/
-      - name: Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: artifacts
-          path: artifacts/
-      - name: Copy the Jar file to the project directory
-        run: ls artifacts
       - name: Copy the Jar file to the project directory
         run: cp artifacts/app.jar app.jar
       - name: Login to Docker Hub
