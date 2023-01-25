@@ -43,6 +43,8 @@ jobs:
           path: build/libs/*.jar
 
   build-docker:
+    environment:
+      name: default
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -58,6 +60,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: app.jar
+          path: artifacts/
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
@@ -68,6 +71,9 @@ jobs:
         with:
           push: true
           tags: bogdanjava/payments-platform:latest
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          context: artifacts/
 
 
 
