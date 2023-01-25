@@ -1,7 +1,7 @@
 FROM openjdk:17-alpine
 
 RUN ls
-COPY ./app.jar /application.jar
+COPY ./artifacts/app.jar /application.jar
 
 RUN adduser -D myuser
 USER myuser
