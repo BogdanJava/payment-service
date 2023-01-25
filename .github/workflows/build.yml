@@ -32,7 +32,7 @@ jobs:
   build-docker:
     environment:
       name: default
-    needs: build
+    needs: test-and-build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
