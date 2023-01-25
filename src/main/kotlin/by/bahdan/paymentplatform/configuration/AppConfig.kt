@@ -6,12 +6,13 @@ import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.mongodb.ConnectionString
-import java.io.File
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.mongo.MongoClientSettingsBuilderCustomizer
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.Profile
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+import java.io.File
 
 @Configuration
 @EnableMongoRepositories(
@@ -29,6 +30,7 @@ class AppConfig {
             "mongodb://$username:$password@$host:$port/$db?authSource=$authDB"
     }
 
+    @Profile("!test")
     @Bean
     fun mongoConnectionSettings(
         mapper: ObjectMapper,
