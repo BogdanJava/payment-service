@@ -59,13 +59,15 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: app.jar
+          name: artifacts
           path: artifacts/
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: app.jar
+          name: artifacts
           path: artifacts/
+      - name: Copy the Jar file to the project directory
+        run: ls artifacts
       - name: Copy the Jar file to the project directory
         run: cp artifacts/app.jar app.jar
       - name: Login to Docker Hub
