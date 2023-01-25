@@ -22,12 +22,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
+							"raw": "{{service_url}}/graphql",
 							"host": [
-								"localhost"
+								"{{service_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"graphql"
 							]
@@ -48,12 +46,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
+							"raw": "{{service_url}}/graphql",
 							"host": [
-								"localhost"
+								"{{service_url}}"
 							],
-							"port": "8080",
 							"path": [
 								"graphql"
 							]
@@ -78,12 +74,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/payment",
-					"protocol": "http",
+					"raw": "{{service_url}}/payment",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"payment"
 					]
@@ -140,12 +134,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/payment",
-					"protocol": "http",
+					"raw": "{{service_url}}/payment",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"payment"
 					]
@@ -202,12 +194,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/payment",
-					"protocol": "http",
+					"raw": "{{service_url}}/payment",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"payment"
 					]
@@ -264,12 +254,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/payment",
-					"protocol": "http",
+					"raw": "{{service_url}}/payment",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"payment"
 					]
@@ -326,12 +314,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/payment",
-					"protocol": "http",
+					"raw": "{{service_url}}/payment",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"payment"
 					]
@@ -388,18 +374,43 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/sales",
-					"protocol": "http",
+					"raw": "{{service_url}}/sales",
 					"host": [
-						"localhost"
+						"{{service_url}}"
 					],
-					"port": "8080",
 					"path": [
 						"sales"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "service_url",
+			"value": "",
+			"type": "string"
 		}
 	]
 }
