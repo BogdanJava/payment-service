@@ -21,7 +21,7 @@ spec:
             optional: false
       containers:
         - name: app
-          image: payment-platform:1.0
+          image: bogdanjava/payment-platform:1.0
           ports:
             - containerPort: 8080
           volumeMounts:
