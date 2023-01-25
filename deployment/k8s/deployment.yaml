@@ -24,8 +24,29 @@ spec:
           image: bogdanjava/payment-platform:latest
           ports:
             - containerPort: 8080
-          volumeMounts:
-            - name: db-connection-secrets
-              mountPath: "/etc/db-connection-secrets"
-              readOnly: true
+          env:
+            - name: MONGO_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: db-connection-secrets
+                  key: mongoPort
+                  optional: false
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-connection-secrets
+                  key: mongoPassword
+                  optional: false
+            - name: MONGO_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: db-connection-secrets
+                  key: mongoHost
+                  optional: false
+            - name: MONGO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-connection-secrets
+                  key: mongoUsername
+                  optional: false
 
