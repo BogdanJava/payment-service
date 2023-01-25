@@ -1,7 +1,7 @@
 FROM openjdk:17-alpine
 
-RUN ls
-COPY ./artifacts/app.jar /application.jar
+ARG JAR_FILE_PATH
+COPY $JAR_FILE_PATH /application.jar
 
 RUN adduser -D myuser
 USER myuser
