@@ -2,7 +2,7 @@ FROM openjdk:17-alpine
 
 WORKDIR app
 
-COPY app.jar app.jar
+COPY ./app.jar app.jar
 
 RUN adduser -D myuser
 USER myuser
