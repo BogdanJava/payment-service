@@ -17,6 +17,12 @@ or
 docker-compose up
 ```
 
+### Kubernetes
+Create kubernetes resources
+```bash
+kubectl create -f ./deployment/k8s
+```
+
 ## APIs
 The application has 2 types of API:
 - RESTFul
