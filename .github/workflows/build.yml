@@ -35,7 +35,6 @@ jobs:
     needs: test-and-build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
@@ -51,6 +50,7 @@ jobs:
       - name: Build the Docker image
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           tags: bogdanjava/payments-platform:latest
 
