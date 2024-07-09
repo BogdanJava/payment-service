@@ -51,3 +51,5 @@ curl --location --request POST 'http://localhost:8080/sales' \
     "endDateTime": "2022-09-01T05:13:00Z"
 }'
 ```
+
+Have fun!
